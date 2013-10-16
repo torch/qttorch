@@ -1,21 +1,17 @@
-# -*- cmake -*-
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6 FATAL_ERROR)
+CMAKE_POLICY(VERSION 2.6)
 
-IF(Torch_SOURCE_DIR)
+FIND_PACKAGE(Torch REQUIRED)
+FIND_PACKAGE(Qt4 REQUIRED)
 
-  INCLUDE_DIRECTORIES("${Torch_SOURCE_DIR}/lib/TH")
-  INCLUDE_DIRECTORIES("${Torch_SOURCE_DIR}/lib/luaT")
-  INCLUDE_DIRECTORIES("${Torch_BINARY_DIR}/lib/TH")
-  INCLUDE_DIRECTORIES(".")
-  INCLUDE(${QT_USE_FILE})		     
-  
-  SET(qttorch_SRC qttorch.h qttorch.cpp)
-  
-  MACRO_INSTALL_QTLUA_FILES(qttorch init.lua)
-  
-  MACRO_ADD_QTLUA_MODULE(libqttorch ${qttorch_SRC})
-  
-  TARGET_LINK_LIBRARIES(libqttorch luaT TH)
-  
-#  ADD_TORCH_DOK(dok qttorch "QT Interface" "Torch Tensor interface" 6.)
+INCLUDE_DIRECTORIES("${Torch_INSTALL_INCLUDE}/qtlua")
+INCLUDE(${QT_USE_FILE})
 
-ENDIF(Torch_SOURCE_DIR)
+SET(src qttorch.h qttorch.cpp)
+SET(luasrc init.lua)
+
+ADD_TORCH_PACKAGE(qttorch "${src}" "${luasrc}")
+
+TARGET_LINK_LIBRARIES(qttorch luaT TH)
+
+INSTALL(DIRECTORY "doc" DESTINATION "${Torch_INSTALL_LUA_PATH_SUBDIR}/qttorch")
