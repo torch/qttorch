@@ -1,0 +1,55 @@
+<a name="qttorch.dok"/>
+# QTTorch Package Reference Manual #
+
+Package `qttorch` declares two functions
+that convert `torch.Tensor` to `QImage` and vice-versa.
+
+Loading this package automatically loads
+packages [torch](..:torch:index) 
+and [qt](..:qt:index).
+
+
+<a name="qimagefromtensor"/>
+### qt.QImage.fromTensor(tensor) ###
+
+`qt.QImage.fromTensor(tensor)`
+
+Return a new [QImage](..:qtgui:index#qimage) filled 
+with data from a torch [Tensor](..:torch:index#Tensor).
+
+Tensor `tensor` must have 2 or 3 dimensions.
+  * The first dimension defines the image width.
+  * The second dimension defines the image height.
+  * The third dimension size must be 1, 3, or 4
+for monochrome, rgb, and rgba images respectively.
+Each component is a floating point number in range 0 to 1.
+
+
+<a name="qimagetotensor"/>
+### qimage:toTensor(arg) ###
+
+`qimage.toTensor(tensor)`
+
+Fill the [Tensor](..:torch:index#Tensor) `tensor` with data 
+from [QImage](..:qtgui:index#qimage) `qimage`.
+Tensor `tensor` must have 2 or 3 dimensions.
+The first two dimensions must be equal to the 
+image width and height respectively.
+The third dimension must be 1, 3, or 4
+for monochromatic, rgb or rgba images.
+The `qimage` data will be converted to the desired format
+and stored into the tensor, each component being
+represented by a floating point number in range 0 to 1.
+This function returns the filled tensor.
+
+`qimage.toTensor(depth)`
+
+Create a tensor with data from image `qimage`.
+Argument `depth` must be 1, 3, or 4
+for extracting monochromatic, rgb or rgba data.
+When `depth` is one, this function returns a two-dimensional tensor.
+Otherwise it returns a three-dimensional tensor with
+the third dimension equal to `depth`. 
+The first two dimensions are always 
+the image width and height.
+
