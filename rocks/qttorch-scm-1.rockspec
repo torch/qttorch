@@ -2,8 +2,7 @@ package = "qttorch"
 version = "scm-1"
 
 source = {
-   url = "git://github.com/andresy/torch7-split.git",
-   dir = "torch7-split/rocks/qttorch"
+   url = "git://github.com/torch/qttorch.git",
 }
 
 description = {
