@@ -3,8 +3,10 @@
 #ifndef QTTORCH_H
 #define QTTORCH_H
 
+extern "C" {
 #include "lua.h"
 #include "lauxlib.h"
+}
 #include "qtluaengine.h"
 #include "qtluautils.h"
 
