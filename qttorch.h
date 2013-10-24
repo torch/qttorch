@@ -21,6 +21,8 @@ extern "C" {
 # define QTTORCH_API /**/
 #endif
 
+#define LUA_EXTERNC extern "C"
+
 LUA_EXTERNC QTTORCH_API int luaopen_libqttorch(lua_State *L);
 
 
