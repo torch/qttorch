@@ -105,7 +105,7 @@ static int qttorch_(qimage_totensor)(lua_State *L)
   }
   else
   {
-    depth = luaL_optinteger(L, 2, 3);
+    depth = luaL_optinteger(L, 4, 3);
     if (depth != 1 && depth != 3 && depth != 4)
       luaL_error(L, "depth must be 1, 3, or 4.");
     if (depth == 1)
