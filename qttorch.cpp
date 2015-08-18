@@ -47,7 +47,7 @@ int luaopen_libqttorch(lua_State *L)
   // enrichs QImage
   luaQ_pushmeta(L, QMetaType::QImage);
   luaQ_getfield(L, -1, "__metatable");
-  luaL_setfuncs(L, qttorch_qimage_lib, 0);
+  luaT_setfuncs(L, qttorch_qimage_lib, 0);
 
   return 0;
 }
